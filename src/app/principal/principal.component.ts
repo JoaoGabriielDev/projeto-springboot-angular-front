@@ -1,8 +1,8 @@
+import { Cliente } from './../modelo/Cliente';
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ClienteService } from '../servico/cliente.service';
-import { Cliente } from '../modelo/Cliente';
 
 @Component({
   selector: 'app-principal',
@@ -13,6 +13,8 @@ import { Cliente } from '../modelo/Cliente';
 })
 export class PrincipalComponent {
 
+  cliente = new Cliente();
+
   btnCadastro:boolean = true;
 
   clientes:Cliente[] = [];
@@ -22,6 +24,18 @@ export class PrincipalComponent {
   selecionar():void{
     this.servico.selecionar()
     .subscribe(retorno => this.clientes = retorno);
+  }
+
+  cadastrar():void{
+    this.servico.cadastrar(this.cliente)
+    .subscribe(retorno => {
+
+      this.clientes.push(retorno);
+
+      this.cliente = new Cliente();
+
+      alert('Cliente cadastrado com sucesso!');
+    });
   }
 
   ngOnInit(){

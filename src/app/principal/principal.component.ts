@@ -61,6 +61,27 @@ export class PrincipalComponent {
     });
   }
 
+  remover():void{
+    this.servico.remover(this.cliente.id)
+    .subscribe(retorno => {
+
+      let posicao = this.clientes.findIndex(obj => {
+        return obj.id == this.cliente.id;
+      });
+
+      this.clientes.splice(posicao, 1);
+
+      this.cliente = new Cliente;
+
+      this.btnCadastro = true;
+
+      this.tabela = true;
+
+      alert('Cliente removido com sucesso!')
+
+    });
+  }
+
   selecionarCliente(posicao:number):void{
 
     this.cliente = this.clientes[posicao];

@@ -24,4 +24,8 @@ export class ClienteService {
     return this.http.put<Cliente>(this.url, obj);
   }
 
+  remover(id:number):Observable<void>{
+    return this.http.delete<void>(this.url + '/' + id);
+  }
+
 }

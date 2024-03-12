@@ -40,6 +40,27 @@ export class PrincipalComponent {
     });
   }
 
+  editar():void{
+    this.servico.editar(this.cliente)
+    .subscribe(retorno => {
+
+      let posicao = this.clientes.findIndex(obj => {
+        return obj.id == retorno.id;
+      });
+
+      this.clientes[posicao] = retorno;
+
+      this.cliente = new Cliente;
+
+      this.btnCadastro = true;
+
+      this.tabela = true;
+
+      alert('Cliente alterado com sucesso!')
+
+    });
+  }
+
   selecionarCliente(posicao:number):void{
 
     this.cliente = this.clientes[posicao];

@@ -17,6 +17,8 @@ export class PrincipalComponent {
 
   btnCadastro:boolean = true;
 
+  tabela:boolean = true;
+
   clientes:Cliente[] = [];
 
   constructor(private servico:ClienteService){}
@@ -36,6 +38,15 @@ export class PrincipalComponent {
 
       alert('Cliente cadastrado com sucesso!');
     });
+  }
+
+  selecionarCliente(posicao:number):void{
+
+    this.cliente = this.clientes[posicao];
+
+    this.btnCadastro = false;
+
+    this.tabela = false;
   }
 
   ngOnInit(){

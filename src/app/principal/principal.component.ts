@@ -82,6 +82,15 @@ export class PrincipalComponent {
     });
   }
 
+  cancelar():void{
+
+    this.cliente = new Cliente;
+
+    this.btnCadastro = true;
+
+    this.tabela = true;
+  }
+
   selecionarCliente(posicao:number):void{
 
     this.cliente = this.clientes[posicao];
